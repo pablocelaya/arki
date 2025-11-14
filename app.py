@@ -135,6 +135,50 @@ def health():
     return jsonify({'status': 'OK'})
 
 
+# Agrega esto ANTES del if __name__ == '__main__':
+
+@app.route('/')
+def home():
+    return '''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>ARKI PDF Server</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; }
+            .container { max-width: 800px; margin: 0 auto; }
+            .endpoint { background: #f5f5f5; padding: 10px; margin: 10px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🚀 ARKI PDF Server</h1>
+            <p>Servidor backend para procesamiento y protección de PDFs</p>
+            
+            <h2>Endpoints disponibles:</h2>
+            <div class="endpoint">
+                <strong>GET /api/health</strong> - Estado del servidor
+            </div>
+            <div class="endpoint">
+                <strong>POST /api/upload-pdf</strong> - Subir y procesar PDF
+            </div>
+            <div class="endpoint">
+                <strong>GET /api/download/&lt;filename&gt;</strong> - Descargar PDF procesado
+            </div>
+        </div>
+    </body>
+    </html>
+    '''
+
+@app.route('/api/health')
+def health():
+    return jsonify({
+        'status': 'OK',
+        'message': 'ARKI PDF Server is running',
+        'timestamp': '2025-11-14T17:52:00Z'
+    })
+
+
 # ========================================================
 #   RUN SERVER
 # ========================================================
