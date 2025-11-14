@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: arki-backend
+    env: python
+    plan: free
+    buildCommand: cd server && pip install -r requirements.txt
+    startCommand: cd server && gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+
+  - type: web
+    name: arki-frontend
+    env: static
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
