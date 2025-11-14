@@ -2,15 +2,9 @@
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    poppler-utils \
-    && rm -rf /var/lib/apt/lists/*
-
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app.py .
 
-EXPOSE 8000
-
-CMD ["python", "app.py"]
+CMD python app.py
