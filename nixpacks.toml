@@ -1,0 +1,12 @@
+﻿[phases.setup]
+required = ["python"]
+
+[phases.install]
+nixPkgs = ["poppler_utils"]
+commands = ["pip install -r requirements.txt"]
+
+[phases.build]
+commands = ["echo 'Building Python backend only'"]
+
+[start]
+command = "python app.py"
