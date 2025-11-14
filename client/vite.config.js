@@ -6,13 +6,4 @@ export default defineConfig({
   build: {
     outDir: "dist",
   },
-  // Cambia la URL del backend para producción
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://tu-backend-en-render.com", // Cambiar por tu URL de Render
-        changeOrigin: true,
-      },
-    },
-  },
 });

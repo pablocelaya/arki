@@ -9,6 +9,9 @@ function App() {
   const [downloadUrl, setDownloadUrl] = useState("");
   const [toast, setToast] = useState("");
 
+  // URL del backend en producción
+  const BACKEND_URL = "https://arki-production.up.railway.app";
+
   const carouselImages = [
     "/carousel1.png",
     "/carousel2.png",
@@ -59,7 +62,7 @@ function App() {
     setDownloadUrl("");
   };
 
-  // Subir archivo
+  // Subir archivo - ACTUALIZADO para producción
   const handleUpload = async () => {
     if (!selectedFile) return;
 
@@ -69,7 +72,7 @@ function App() {
     formData.append("pdf", selectedFile);
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload-pdf", {
+      const res = await fetch(`${BACKEND_URL}/api/upload-pdf`, {
         method: "POST",
         body: formData,
       });
@@ -80,11 +83,13 @@ function App() {
         setProgress(100);
         setTimeout(() => {
           setToast("PDF procesado exitosamente!");
-          setDownloadUrl(`http://localhost:5000${data.download_url}`);
+          setDownloadUrl(`${BACKEND_URL}${data.download_url}`);
         }, 400);
+      } else {
+        setToast(data.error || "Error procesando el PDF");
       }
     } catch (err) {
-      setToast("Error procesando el PDF");
+      setToast("Error de conexión con el servidor");
     } finally {
       setTimeout(() => setIsProcessing(false), 600);
       setTimeout(() => setToast(""), 4000);
