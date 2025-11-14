@@ -139,6 +139,11 @@ def health():
 #   RUN SERVER
 # ========================================================
 # Cambia esto al final:
+import os
+
+# ... todo tu código anterior ...
+
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get('PORT', 8000))
+    print(f"🚀 Starting ARKI PDF Server on port {port}")
     app.run(host='0.0.0.0', port=port, debug=False)
