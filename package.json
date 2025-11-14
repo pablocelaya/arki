@@ -1,0 +1,6 @@
+{
+  "name": "arki-backend",
+  "scripts": {
+    "start": "python app.py"
+  }
+}
