@@ -1,8 +1,5 @@
 ﻿[build]
-builder = "nixpacks"
+builder = ""dockerfile""
 
 [deploy]
-startCommand = "python app.py"
-
-[nixpacks]
-configFiles = ["./nixpacks.toml"]
+startCommand = ""python app.py""
